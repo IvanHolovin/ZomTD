@@ -5,7 +5,10 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField, Min(0f)] 
     private float _speed;
-
+    
+    [SerializeField, Min(0f)] 
+    private float _jumpForce;
+    
     [SerializeField] 
     private Transform _groundCheck;
 
@@ -39,7 +42,11 @@ public class PlayerMove : MonoBehaviour
         {
             _velocity.y += _gravity * Time.deltaTime;
         }
-             
+
+        if (Input.GetButtonDown("Jump") && _isGrounded)
+        {
+            _velocity.y = _jumpForce;
+        }
 
         Vector3 move = transform.right * xDirection + transform.forward * zDirection;
         _playerController.Move(move * _speed * Time.deltaTime);
