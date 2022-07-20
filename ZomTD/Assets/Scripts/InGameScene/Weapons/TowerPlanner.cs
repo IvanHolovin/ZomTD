@@ -13,6 +13,8 @@ namespace InGameScene.Weapons
         
         private PathFinding currentPathFinder;
 
+        private Tile _previuosTile;
+
         private void Start()
         {
             _manager = GetComponentInParent<WeaponManager>();
@@ -21,10 +23,10 @@ namespace InGameScene.Weapons
         public void Shot()
         {
             Tile targetTile = GetTile();
-            if(targetTile != null){
+            if(targetTile != null)
+            {
                 currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
-                targetTile._TileType = Tile.TileType.Wall;
-                if (currentPathFinder.PathFind())
+                if (currentPathFinder.PathFind(targetTile))
                 {
                     targetTile._TileType = Tile.TileType.Wall;
                     
@@ -52,18 +54,48 @@ namespace InGameScene.Weapons
                 return null;
         }
         
+        private Wall GetWall()
+        {
+            //Ray ray = playerCam.transform.position,;
+            RaycastHit rayHit;
+            bool wasHit = Physics.Raycast(_manager.PlayerCam().transform.position,_manager.PlayerCam().transform.forward, out rayHit, int.MaxValue, LayerMask.GetMask("Tiles"));
+            if (wasHit)
+                return rayHit.transform.GetComponent<Wall>();
+            else
+                return null;
+        }
+        
 
         public void Targeting()
         {
             Tile targetTile = GetTile();
-            if (targetTile != null)
+            if (targetTile != null && targetTile._TileType == Tile.TileType.Open)
             {
                 currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
-                if (targetTile._TileType == Tile.TileType.Open)
+                if (targetTile != _previuosTile) 
                 {
-                    
+                    targetTile.PlayAnimation(true,currentPathFinder.PathFind(targetTile));
+                    if(_previuosTile != null) 
+                        _previuosTile.PlayAnimation(false,false);
                 }
+                
+                _previuosTile = targetTile;
+            }
+            else
+            {   if(_previuosTile != null)
+                _previuosTile.PlayAnimation(false,false);
+                _previuosTile = null;
+            }
+        }
+
+        public void Reload()
+        {
+            Wall targetWall = GetWall();
+            if (targetWall != null && targetWall.GetComponentInParent<Tile>()._TileType == Tile.TileType.Wall)
+            {
+                targetWall.GetComponentInParent<Tile>()._TileType = Tile.TileType.Open;
             }
         }
     }
+    
 }

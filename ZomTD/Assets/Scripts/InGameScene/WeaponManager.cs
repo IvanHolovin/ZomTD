@@ -21,8 +21,7 @@ public class WeaponManager : MonoBehaviour
     {
         _currentWeapon = _weapon.GetComponent<IWeapon>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         _currentWeapon.Targeting();
@@ -31,37 +30,11 @@ public class WeaponManager : MonoBehaviour
         {
             _currentWeapon.Shot();
         }
-    }
 
-    private void Shoot()
-    {
-        Tile targetTile = GetTile();
-        if(targetTile != null){
-            currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
-            targetTile._TileType = Tile.TileType.Wall;
-            if (currentPathFinder.PathFind())
-            {
-                targetTile._TileType = Tile.TileType.Wall;
-                Debug.Log("open");
-            }
-            else
-            {
-                targetTile._TileType = Tile.TileType.Open;
-                Debug.Log("closed");
-            }
+        if (Input.GetButtonDown("Reload"))
+        {
+            _currentWeapon.Reload();
         }
         
-    }
-
-
-    private Tile GetTile()
-    {
-        //Ray ray = _playerCam.transform.position,;
-        RaycastHit rayHit;
-        bool wasHit = Physics.Raycast(_playerCam.transform.position,_playerCam.transform.forward, out rayHit, int.MaxValue, LayerMask.GetMask("Tiles"));
-        if (wasHit)
-            return rayHit.transform.GetComponent<Tile>();
-        else
-            return null;
     }
 }

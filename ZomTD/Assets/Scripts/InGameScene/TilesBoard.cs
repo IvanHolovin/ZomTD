@@ -10,6 +10,9 @@ public class TilesBoard : MonoBehaviour
     [SerializeField] 
     private Tile _gameTilePrefab;
 
+    [SerializeField] 
+    private float _tileSize = 1.75f;
+
     private Tile[,] _grid;
     
     private Vector2Int _size;
@@ -33,9 +36,9 @@ public class TilesBoard : MonoBehaviour
 
         _grid = new Tile[size.x, size.y];
         
-        _tilesBoard.localScale = new Vector3(size.x * 2.3f ,size.y * 2.3f ,1f );
+        _tilesBoard.localScale = new Vector3(size.x * _tileSize ,size.y * _tileSize ,1f );
 
-        Vector2 offset = new Vector2((size.x - 1f) * 0.5f * 2.3f, (size.y - 1f) * 0.5f * 2.3f);
+        Vector2 offset = new Vector2((size.x - 1f) * 0.5f * _tileSize, (size.y - 1f) * 0.5f * _tileSize);
 
         for (int y = 0; y < size.y; y++)
         {
@@ -44,7 +47,7 @@ public class TilesBoard : MonoBehaviour
                 _grid[x, y] = Instantiate(_gameTilePrefab);
                 _grid[x, y].transform.SetParent(transform, false);
                 _grid[x, y].transform.localPosition = new Vector3(
-                    x * 2.3f - offset.x, y * 2.3f - offset.y,0f);
+                    x * _tileSize - offset.x, y * _tileSize - offset.y,0f);
                 _grid[x, y].Init(x, y);
                 if (y == 0)
                 {

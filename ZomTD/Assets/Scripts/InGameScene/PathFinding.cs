@@ -11,8 +11,9 @@ public class PathFinding : MonoBehaviour
         _tilesBoard = GetComponent<TilesBoard>();
     }
 
-    public bool PathFind()
+    public bool PathFind(Tile updatedTile)
     {
+        updatedTile._TileType = Tile.TileType.Wall;
         Dictionary<Tile, Tile> nextTileToGoal = new Dictionary<Tile, Tile>();
         Queue<Tile> frontier = new Queue<Tile>();
         List<Tile> visited = new List<Tile>();
@@ -38,10 +39,12 @@ public class PathFinding : MonoBehaviour
         }
         if (visited.Contains(_tilesBoard.StartTile()) == false)
         {
+            updatedTile._TileType = Tile.TileType.Open;
             return false;
         }
         else
         {
+            updatedTile._TileType = Tile.TileType.Open;
             return true;
         }
     }

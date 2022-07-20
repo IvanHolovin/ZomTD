@@ -8,5 +8,7 @@ namespace InGameScene.Weapons
        public void Shot();
 
        public void Targeting();
+
+       public void Reload();
     }
 }
