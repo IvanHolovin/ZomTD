@@ -1,25 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using InGameScene.Weapons;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] 
-    private GameObject playerCam;
+    private GameObject _playerCam;
+    
+    private IWeapon _currentWeapon;
+
+    [SerializeField] 
+    private GameObject _weapon;
 
     private PathFinding currentPathFinder;
-     
+
+    public GameObject PlayerCam() => _playerCam;
+
     void Start()
     {
-        
+        _currentWeapon = _weapon.GetComponent<IWeapon>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        _currentWeapon.Targeting();
+        
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            _currentWeapon.Shot();
         }
     }
 
@@ -29,10 +39,15 @@ public class WeaponManager : MonoBehaviour
         if(targetTile != null){
             currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
             targetTile._TileType = Tile.TileType.Wall;
-            if (currentPathFinder)
+            if (currentPathFinder.PathFind())
+            {
+                targetTile._TileType = Tile.TileType.Wall;
+                Debug.Log("open");
+            }
+            else
             {
                 targetTile._TileType = Tile.TileType.Open;
-                Debug.Log("open");
+                Debug.Log("closed");
             }
         }
         
@@ -41,9 +56,9 @@ public class WeaponManager : MonoBehaviour
 
     private Tile GetTile()
     {
-        //Ray ray = playerCam.transform.position,;
+        //Ray ray = _playerCam.transform.position,;
         RaycastHit rayHit;
-        bool wasHit = Physics.Raycast(playerCam.transform.position,playerCam.transform.forward, out rayHit, int.MaxValue, LayerMask.GetMask("Tiles"));
+        bool wasHit = Physics.Raycast(_playerCam.transform.position,_playerCam.transform.forward, out rayHit, int.MaxValue, LayerMask.GetMask("Tiles"));
         if (wasHit)
             return rayHit.transform.GetComponent<Tile>();
         else
