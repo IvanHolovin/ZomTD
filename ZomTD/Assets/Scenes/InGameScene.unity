@@ -435,6 +435,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCam: {fileID: 152935524}
   _weapon: {fileID: 1430780740}
+--- !u!114 &641030122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641030119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297f63e34d4d47eca4c27c1d3e095ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCamera: {fileID: 152935524}
 --- !u!1 &697817451
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a66710fd994668bebe5a58cccdea66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _surface: {fileID: 6075222201027677774, guid: 0494676345f8f4e78ab48a585aaa1ef4, type: 3}
 --- !u!1 &1735171427
 GameObject:
   m_ObjectHideFlags: 0

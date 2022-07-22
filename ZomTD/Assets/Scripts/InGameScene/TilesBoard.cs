@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using InGameScene.Tiles;
 using UnityEngine;
 
 public class TilesBoard : MonoBehaviour

@@ -1,89 +1,94 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using InGameScene.Tiles;
 
+enum PlannerAction
+{
+    Targeting,
+    Select,
+    Remove,
+    Update
+}
 namespace InGameScene.Weapons
 {
     public class TowerPlanner : MonoBehaviour, IWeapon
     {
-        [SerializeField] 
-        private NavMeshSurface _surface;
-        
-        private WeaponManager _manager;
-        
-        private PathFinding currentPathFinder;
+
+        private AIM _manager;
+
+        private PathFinding _currentPathFinder;
 
         private Tile _previuosTile;
 
         private void Start()
         {
-            _manager = GetComponentInParent<WeaponManager>();
+            _manager = GetComponentInParent<AIM>();
         }
 
         public void Shot()
         {
+
             Tile targetTile = GetTile();
-            if(targetTile != null)
+            if (targetTile != null && targetTile._TileType == Tile.TileType.Open)
             {
-                currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
-                if (currentPathFinder.PathFind(targetTile))
+                _currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
+                if (_currentPathFinder.PathFind(targetTile))
                 {
                     targetTile._TileType = Tile.TileType.Wall;
-                    
-                    Debug.Log("open");
-                }
-                else
-                {
-                    targetTile._TileType = Tile.TileType.Open;
-                    
-                    Debug.Log("closed");
                 }
             }
-        
+
         }
-        
+
 
         private Tile GetTile()
         {
-            //Ray ray = playerCam.transform.position,;
-            RaycastHit rayHit;
-            bool wasHit = Physics.Raycast(_manager.PlayerCam().transform.position,_manager.PlayerCam().transform.forward, out rayHit, int.MaxValue, LayerMask.GetMask("Tiles"));
-            if (wasHit)
-                return rayHit.transform.GetComponent<Tile>();
+
+            if (_manager.Target() != null && _manager.Target().transform.GetComponentInParent<Tile>() != null)
+            {
+                Tile tile = _manager.Target().transform.GetComponentInParent<Tile>();
+                return tile;
+            }
             else
+            {
                 return null;
+            }
         }
-        
+
+
+
         private Wall GetWall()
         {
-            //Ray ray = playerCam.transform.position,;
-            RaycastHit rayHit;
-            bool wasHit = Physics.Raycast(_manager.PlayerCam().transform.position,_manager.PlayerCam().transform.forward, out rayHit, int.MaxValue, LayerMask.GetMask("Tiles"));
-            if (wasHit)
-                return rayHit.transform.GetComponent<Wall>();
+            if (_manager.Target().GetComponentInParent<Wall>() != null)
+            {
+                Wall wall = _manager.Target().GetComponentInParent<Wall>();
+                return wall;
+            }
             else
                 return null;
         }
-        
+
 
         public void Targeting()
         {
             Tile targetTile = GetTile();
             if (targetTile != null && targetTile._TileType == Tile.TileType.Open)
             {
-                currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
-                if (targetTile != _previuosTile) 
+                _currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
+                if (targetTile != _previuosTile)
                 {
-                    targetTile.PlayAnimation(true,currentPathFinder.PathFind(targetTile));
-                    if(_previuosTile != null) 
-                        _previuosTile.PlayAnimation(false,false);
+                    targetTile.PlayAnimation(true, _currentPathFinder.PathFind(targetTile));
+                    if (_previuosTile != null)
+                        _previuosTile.PlayAnimation(false, false);
                 }
-                
+
                 _previuosTile = targetTile;
             }
             else
-            {   if(_previuosTile != null)
-                _previuosTile.PlayAnimation(false,false);
+            {
+                if (_previuosTile != null)
+                    _previuosTile.PlayAnimation(false, false);
                 _previuosTile = null;
             }
         }
@@ -97,5 +102,5 @@ namespace InGameScene.Weapons
             }
         }
     }
-    
+
 }

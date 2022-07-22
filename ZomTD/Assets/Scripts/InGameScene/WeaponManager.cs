@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject _playerCam;
+    
     
     private IWeapon _currentWeapon;
 
     [SerializeField] 
     private GameObject _weapon;
-
-    private PathFinding currentPathFinder;
-
-    public GameObject PlayerCam() => _playerCam;
+    
 
     void Start()
     {
@@ -24,7 +20,9 @@ public class WeaponManager : MonoBehaviour
     
     void Update()
     {
+        
         _currentWeapon.Targeting();
+        
         
         if (Input.GetButtonDown("Fire1"))
         {
