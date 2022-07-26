@@ -3,7 +3,12 @@ guid: 3aa425d17ef8049b582dda3cd620addf
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AR15
+    second: {fileID: 2100000, guid: 34e51bbdc741748fc9172835af5fd618, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

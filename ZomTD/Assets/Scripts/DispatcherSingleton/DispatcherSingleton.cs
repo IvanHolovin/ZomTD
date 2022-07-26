@@ -1,19 +1,21 @@
 using System;
+using InGameScene.TD.TDGamePlay;
 
 namespace DispatcherSingletone
 {
-    public class DispatcherSingleton<TClass, TValue> where TClass: DispatcherSingleton<TClass, TValue>, new ()
+    public class DispatcherSingleton<TClass, TValue> where TClass : DispatcherSingleton<TClass, TValue>, new()
     {
         private static TClass _instance;
 
         public static TClass Instance
         {
-            get 
+            get
             {
                 if (_instance == null)
                 {
                     _instance = new TClass();
                 }
+
                 return _instance;
             }
         }

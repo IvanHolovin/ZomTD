@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace InGameScene.Weapons
@@ -6,7 +7,7 @@ namespace InGameScene.Weapons
     {
         [SerializeField] 
         private GameObject _playerCamera;
-
+        
         public GameObject Target()
         {
             RaycastHit rayHit;
@@ -20,6 +21,5 @@ namespace InGameScene.Weapons
                 return null;
             }
         }
-
     }
 }
