@@ -1,7 +1,8 @@
 using System;
-using InGameScene.TD.TDGamePlay;
+using InGameScene.TD.Boards.Tiles;
+using InGameScene;
 
-namespace DispatcherSingletone
+namespace DispatcherSingleton
 {
     public class DispatcherSingleton<TClass, TValue> where TClass : DispatcherSingleton<TClass, TValue>, new()
     {

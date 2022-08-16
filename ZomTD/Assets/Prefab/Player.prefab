@@ -441,6 +441,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1360981075275145064}
     m_Modifications:
+    - target: {fileID: 3162595968011200150, guid: 9cd6ddd54c6f64137bc8e23d6a0e9bb9, type: 3}
+      propertyPath: _contentFactory
+      value: 
+      objectReference: {fileID: 11400000, guid: b2d1d5e3240e74751abba97d8f3f5ccf, type: 2}
     - target: {fileID: 8614024196074880782, guid: 9cd6ddd54c6f64137bc8e23d6a0e9bb9, type: 3}
       propertyPath: m_Name
       value: Planer

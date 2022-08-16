@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d15a747f7642aebd3fba1ff402d100, type: 3}
+  m_Name: PreviewContentFactory
+  m_EditorClassIdentifier: 
+  _emptyPrefab: {fileID: 8243054506347136332, guid: 5d507e9b25ee64a4a84ed428d78b2130, type: 3}
+  _boxPrefab: {fileID: 6554654273250254680, guid: 01b0fbb05cb9a42d3a3afd174fb5bdb3, type: 3}
+  _machineGunTurret: {fileID: 7447877979236821512, guid: 81e13555b5cb741a18cb9b4acbb3d7dc, type: 3}

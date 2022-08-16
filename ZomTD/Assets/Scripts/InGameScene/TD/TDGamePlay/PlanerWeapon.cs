@@ -9,13 +9,22 @@ namespace InGameScene.TD.TDGamePlay
         {
             PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Targeting);
             
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Select);
+                PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Box);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Tower);
             }
             if (Input.GetButtonDown("Reload"))
             {
                 PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Remove);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Upgrade);
             }
             
         }

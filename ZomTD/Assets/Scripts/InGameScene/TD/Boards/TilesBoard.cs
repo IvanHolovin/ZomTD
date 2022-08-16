@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using InGameScene.Tiles;
+using InGameScene.TD.Boards;
+using InGameScene.TD.Boards.Tiles;
 using UnityEngine;
 
 public class TilesBoard : MonoBehaviour
@@ -14,6 +15,9 @@ public class TilesBoard : MonoBehaviour
     [SerializeField] 
     private float _tileSize = 1.75f;
 
+    [SerializeField] 
+    private GameTileContentFactory _contentFactory;
+    
     private Tile[,] _grid;
     
     private Vector2Int _size;
@@ -47,26 +51,30 @@ public class TilesBoard : MonoBehaviour
             {
                 _grid[x, y] = Instantiate(_gameTilePrefab);
                 _grid[x, y].transform.SetParent(transform, false);
+                _grid[x, y].transform.localScale = new Vector3(_tileSize * 0.9f, _tileSize * 0.9f, 1f);
                 _grid[x, y].transform.localPosition = new Vector3(
                     x * _tileSize - offset.x, y * _tileSize - offset.y,0f);
                 _grid[x, y].Init(x, y);
                 if (y == 0)
                 {
-                    _grid[x, y]._TileType = Tile.TileType.Locked;
+                    _grid[x, y].CurrentTileType = Tile.TileType.Locked;
                     if (x == size.x / 2)
                     {
                         _startTile = _grid[x, y];
-                        _grid[x, y]._TileType = Tile.TileType.StartPoint;
+                        //_grid[x, y].CurrentTileType = Tile.TileType.StartPoint;
                     }
-                }
-                if (y == size.y-1)
+                } 
+                else if (y == size.y-1)
                 {
-                    _grid[x, y]._TileType = Tile.TileType.Locked;
+                    _grid[x, y].CurrentTileType = Tile.TileType.Locked;
                     if (x == size.x / 2)
                     {
                         _endTile = _grid[x, y];
-                        _grid[x, y]._TileType = Tile.TileType.EndPoint;
                     }
+                }
+                else
+                {
+                    _grid[x, y].Content = _contentFactory.Get(GameTileContentType.Empty);
                 }
             }
         }

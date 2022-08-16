@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using InGameScene.Tiles;
+using InGameScene.TD.Boards.Tiles;
 using UnityEngine;
 
 public class PathFinding : MonoBehaviour
@@ -14,7 +14,7 @@ public class PathFinding : MonoBehaviour
 
     public bool PathFind(Tile updatedTile)
     {
-        updatedTile._TileType = Tile.TileType.Wall;
+        updatedTile.CurrentTileType = Tile.TileType.Wall;
         Dictionary<Tile, Tile> nextTileToGoal = new Dictionary<Tile, Tile>();
         Queue<Tile> frontier = new Queue<Tile>();
         List<Tile> visited = new List<Tile>();
@@ -29,7 +29,7 @@ public class PathFinding : MonoBehaviour
             {
                 if (visited.Contains(neighbor) == false && frontier.Contains(neighbor) == false)
                 {
-                    if (neighbor._TileType != Tile.TileType.Wall)
+                    if (neighbor.CurrentTileType != Tile.TileType.Wall)
                     {
                         frontier.Enqueue(neighbor);
                         nextTileToGoal[neighbor] = curTile;
@@ -40,12 +40,12 @@ public class PathFinding : MonoBehaviour
         }
         if (visited.Contains(_tilesBoard.StartTile()) == false)
         {
-            updatedTile._TileType = Tile.TileType.Open;
+            updatedTile.CurrentTileType = Tile.TileType.Open;
             return false;
         }
         else
         {
-            updatedTile._TileType = Tile.TileType.Open;
+            updatedTile.CurrentTileType = Tile.TileType.Open;
             return true;
         }
     }

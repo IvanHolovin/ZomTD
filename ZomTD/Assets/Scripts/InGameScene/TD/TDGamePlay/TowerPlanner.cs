@@ -1,136 +1,157 @@
 using System;
 using System.Diagnostics;
+using InGameScene.TD.Boards;
 using InGameScene.TD.TDGamePlay;
 using UnityEngine;
+using InGameScene.TD.Boards.Tiles;
 using UnityEngine.AI;
-using InGameScene.Tiles;
 using InGameScene.Weapons;
+using Debug = UnityEngine.Debug;
 
 public enum PlannerAction
 {
     Targeting,
-    Select,
+    Box,
+    Tower,
     Remove,
     Upgrade
 }
 
- public class TowerPlanner : MonoBehaviour, IWeapon
-    {
+ public class TowerPlanner : MonoBehaviour
+ {
+     [SerializeField] 
+     private BlockBuilder _builder;
+     
+     private AIM _manager;
 
-        private AIM _manager;
+     private PathFinding _currentPathFinder;
 
-        private PathFinding _currentPathFinder;
+     private Tile _selectedTile;
 
-        private Tile _previuosTile;
+     private void Awake()
+     {
+         PlannerActionDispatcher.Instance.AddListener(action => PlannerActionCheck(action));
+     }
 
-        private void Awake()
-        {
-            PlannerActionDispatcher.Instance.AddListener(action => PlannerActionCheck(action));
-        }
+     private void OnDestroy()
+     {
+         PlannerActionDispatcher.Instance.RemoveListener(action => PlannerActionCheck(action));
+     }
 
-        private void OnDestroy()
-        {
-            PlannerActionDispatcher.Instance.RemoveListener(action => PlannerActionCheck(action));
-        }
-
-        private void Start()
-        {
-            _manager = GetComponentInParent<AIM>();
-        }
+     private void Start()
+     {
+         _manager = GetComponentInParent<AIM>();
         
-        private void PlannerActionCheck(PlannerAction actionType)
-        {
-            switch (actionType)
-            {
-                case PlannerAction.Targeting:
-                    Targeting();
-                    break;
-                case PlannerAction.Select:
-                    Shot();
-                    break;
-                case PlannerAction.Remove:
-                    Reload();
-                    break;
-                case PlannerAction.Upgrade:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(actionType), actionType, null);
-                    }
-                }
-        public void Shot()
-        {
+     }
+        
+     private void PlannerActionCheck(PlannerAction actionType)
+     {
+         switch (actionType)
+         {
+             case PlannerAction.Targeting:
+                 Targeting();
+                 break;
+             case PlannerAction.Box:
+                 PutBox();
+                 break;
+             case PlannerAction.Tower:
+                 PutTower();
+                 break;
+             case PlannerAction.Remove:
+                 Sell();
+                 break;
+             case PlannerAction.Upgrade:
+                 PreviewContentUpdateToPermanent();
+                 break;
+             default:
+                 throw new ArgumentOutOfRangeException(nameof(actionType), actionType, null);
+         }
+     }
 
-            Tile targetTile = GetTile();
-            if (targetTile != null && targetTile._TileType == Tile.TileType.Open)
-            {
-                _currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
-                if (_currentPathFinder.PathFind(targetTile))
-                {
-                    targetTile._TileType = Tile.TileType.Wall;
-                }
-            }
+     private void Targeting()
+     {
+         Tile targetTile = GetTile();
+         if (_selectedTile != targetTile )
+         {
+             _selectedTile = targetTile;
+             SelectTile(_selectedTile);
+         }
+     }
 
-        }
+     public void PutBox()
+     {
+         if (_selectedTile != null && _selectedTile.CurrentTileType == Tile.TileType.Open )
+         {
+             _currentPathFinder = _selectedTile.GetComponentInParent<PathFinding>();
+             if (_currentPathFinder.PathFind(_selectedTile))
+             {
+                 _builder.PutBox();
+             }
+         }
+     }
+
+     private void PutTower()
+     {
+         if (_selectedTile != null && _selectedTile.Content.Type == GameTileContentType.Box)
+         {
+             _builder.PutMachineGun();
+         }
+     }
+     
+     private Tile GetTile()
+     {
+         if (_manager.Target() != null && _manager.Target().transform.GetComponentInParent<Tile>() != null)
+         {
+             Tile tile = _manager.Target().transform.GetComponentInParent<Tile>();
+             return tile;
+         }
+         else
+             return null;
+     }
 
 
-        private Tile GetTile()
-        {
 
-            if (_manager.Target() != null && _manager.Target().transform.GetComponentInParent<Tile>() != null)
-            {
-                Tile tile = _manager.Target().transform.GetComponentInParent<Tile>();
-                return tile;
-            }
-            else
-            {
-                return null;
-            }
-        }
+     private Wall GetWall()
+     {
+         if (_manager.Target().GetComponentInParent<Wall>() != null)
+         {
+             Wall wall = _manager.Target().GetComponentInParent<Wall>();
+             return wall;
+         }
+         else
+             return null;
+     }
 
 
+     private void SelectTile(Tile targetTile)
+     {
+         if (targetTile != null)
+         {
+             SelectedTileDispatcher.Instance.ActionHappened(_selectedTile);
+         }
+         else
+         {
+             SelectedTileDispatcher.Instance.ActionHappened(null);
+         }
+     }
 
-        private Wall GetWall()
-        {
-            if (_manager.Target().GetComponentInParent<Wall>() != null)
-            {
-                Wall wall = _manager.Target().GetComponentInParent<Wall>();
-                return wall;
-            }
-            else
-                return null;
-        }
+     private void Sell()
+     {
+         if (_selectedTile != null && _selectedTile.CurrentTileType == Tile.TileType.Wall)
+         {
+             _builder.Sell();
+         }
+     }
 
 
-        public void Targeting()
-        {
-            Tile targetTile = GetTile();
-            if (targetTile != null && targetTile._TileType == Tile.TileType.Open)
-            {
-                _currentPathFinder = targetTile.GetComponentInParent<PathFinding>();
-                if (targetTile != _previuosTile)
-                {
-                    targetTile.PlayAnimation(true, _currentPathFinder.PathFind(targetTile));
-                    if (_previuosTile != null)
-                        _previuosTile.PlayAnimation(false, false);
-                }
 
-                _previuosTile = targetTile;
-            }
-            else
-            {
-                if (_previuosTile != null)
-                    _previuosTile.PlayAnimation(false, false);
-                _previuosTile = null;
-            }
-        }
-
-        public void Reload()
-        {
-            Wall targetWall = GetWall();
-            if (targetWall != null && targetWall.GetComponentInParent<Tile>()._TileType == Tile.TileType.Wall)
-            {
-                targetWall.GetComponentInParent<Tile>()._TileType = Tile.TileType.Open;
-            }
+     private void PreviewContentUpdateToPermanent()
+     {
+         if (_selectedTile != null)
+         {
+             _builder.ToPermanentContent();
         }
     }
+     
+ }
 

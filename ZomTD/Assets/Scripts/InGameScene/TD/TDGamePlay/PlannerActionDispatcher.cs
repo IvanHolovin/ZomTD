@@ -1,4 +1,4 @@
-using DispatcherSingletone;
+using DispatcherSingleton;
 
 namespace InGameScene.TD.TDGamePlay
 {
