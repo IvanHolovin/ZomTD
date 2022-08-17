@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTileContentType: 0
-  _highlightObject: {fileID: 7128175551929801709}
+  blockContent: {fileID: 11400000, guid: 49fc9156ea57b4c5e884650d88e4e182, type: 2}
 --- !u!1001 &2021304959387175686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,11 +107,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2730e623a725485db5a469a37210ad0, type: 3}
---- !u!1 &7128175551929801709 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9142663224987242731, guid: f2730e623a725485db5a469a37210ad0, type: 3}
-  m_PrefabInstance: {fileID: 2021304959387175686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3852004065207883154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2988155323972427412, guid: f2730e623a725485db5a469a37210ad0, type: 3}

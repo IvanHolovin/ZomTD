@@ -306,10 +306,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HighlightParticles
       objectReference: {fileID: 0}
-    - target: {fileID: 4479528880791679729, guid: f282849d3074d4a7c825d28cd391c51c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7161702492782484883, guid: f282849d3074d4a7c825d28cd391c51c, type: 3}
       propertyPath: m_RootOrder
       value: 5

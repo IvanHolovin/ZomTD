@@ -15,8 +15,8 @@ namespace InGameScene.TD.Boards.Tiles
         
         public GameTileContentType Type => _gameTileContentType;
         public GameTileContentFactory OriginFactory { get; set; }
-        
-        
+
+        public BlockContent blockContent;
         
         public void Recycle()
         {

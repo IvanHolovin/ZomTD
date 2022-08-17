@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTileContentType: 2
+  blockContent: {fileID: 11400000, guid: 6323995bfa0074f43b2b93937c13948f, type: 2}
 --- !u!114 &9172959666674333358
 MonoBehaviour:
   m_ObjectHideFlags: 0

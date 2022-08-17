@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTileContentType: 1
+  blockContent: {fileID: 0}
 --- !u!1 &4423367930020303634
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTileContentType: 1
+  blockContent: {fileID: 11400000, guid: 32f13eaa0229145bbbdea1076014e40d, type: 2}
 --- !u!1 &4560527502491807855
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +253,7 @@ GameObject:
   - component: {fileID: 1099877054498425081}
   - component: {fileID: 9037425274362753664}
   - component: {fileID: 1407411268026711347}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

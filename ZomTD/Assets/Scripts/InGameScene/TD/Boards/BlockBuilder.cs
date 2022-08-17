@@ -12,6 +12,8 @@ namespace InGameScene.TD.Boards
         private GameTileContentFactory _contentFactory;
         [SerializeField]
         private GameTileContentFactory _previewContentFactory;
+        [SerializeField]
+        private MoneyManger _moneyManager;
         
         private void Awake()
         {
@@ -38,22 +40,27 @@ namespace InGameScene.TD.Boards
         {
             if (_currentTile.Content.Type != _currentTile.PreviewContent.Type)
             {
-                _currentTile.Content = _contentFactory.Get(_currentTile.PreviewContent.Type);
-                if (_currentTile.PreviewContent.Type == GameTileContentType.Box)
+                if (_moneyManager.SpendMoney((int)_currentTile.PreviewContent.blockContent.cost))
                 {
-                    _currentTile.CurrentTileType = Tile.TileType.Wall;
+                    _currentTile.Content = _contentFactory.Get(_currentTile.PreviewContent.Type);
+                    if (_currentTile.PreviewContent.Type == GameTileContentType.Box)
+                    {
+                        _currentTile.CurrentTileType = Tile.TileType.Wall;
+                    }
                 }
             }
         }
 
         public void Sell()
         {
+            _moneyManager.AddMoney((int)_currentTile.Content.blockContent.sellCost);
             _currentTile.CurrentTileType = Tile.TileType.Open;
             _currentTile.Content = _contentFactory.Get(GameTileContentType.Empty);
         }
 
         public void PutBox()
         {
+            
             _currentTile.PreviewContent = _previewContentFactory.Get(GameTileContentType.Box);
             
         }
