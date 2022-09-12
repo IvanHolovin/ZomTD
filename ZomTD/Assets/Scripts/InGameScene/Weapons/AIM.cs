@@ -12,7 +12,7 @@ namespace InGameScene.Weapons
         {
             RaycastHit rayHit;
             if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out rayHit,
-                int.MaxValue))
+                int.MaxValue, ~12))
             {
                 return rayHit.transform.gameObject;
             }

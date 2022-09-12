@@ -46,6 +46,7 @@ namespace InGameScene.TD.Boards
                     if (_currentTile.PreviewContent.Type == GameTileContentType.Box)
                     {
                         _currentTile.CurrentTileType = Tile.TileType.Wall;
+                        _currentTile = null;
                     }
                 }
             }
@@ -60,14 +61,15 @@ namespace InGameScene.TD.Boards
 
         public void PutBox()
         {
-            
-            _currentTile.PreviewContent = _previewContentFactory.Get(GameTileContentType.Box);
+            if(_currentTile != null)
+                _currentTile.PreviewContent = _previewContentFactory.Get(GameTileContentType.Box);
             
         }
 
         public void PutMachineGun()
         {
-            _currentTile.PreviewContent = _previewContentFactory.Get(GameTileContentType.MachineGun);
+            if(_currentTile != null)
+                _currentTile.PreviewContent = _previewContentFactory.Get(GameTileContentType.MachineGun);
         }
 
         public void Upgrade()

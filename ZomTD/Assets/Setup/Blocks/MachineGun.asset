@@ -15,4 +15,5 @@ MonoBehaviour:
   cost: 15
   sellCost: 10
   damage: 10
-  attackRange: 2
+  attackRange: 4
+  _DamageType: 1

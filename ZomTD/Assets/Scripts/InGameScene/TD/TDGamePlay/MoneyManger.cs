@@ -10,7 +10,16 @@ namespace InGameScene.TD.TDGamePlay
 
         public int MoneyBalance => _moneyBalance;
 
-        
+        private void Awake()
+        {
+            MoneyIncomeDispatcher.Instance.AddListener(AddMoney);
+        }
+
+        private void OnDestroy()
+        {
+            MoneyIncomeDispatcher.Instance.RemoveListener(AddMoney);
+        }
+
         public void AddMoney(int value)
         {
             _moneyBalance += value;

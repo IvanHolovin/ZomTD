@@ -5,7 +5,7 @@ using InGameScene.TD.Boards.Tiles;
 namespace InGameScene.TD.Boards
 {
     [CreateAssetMenu]
-    public class GameTileContentFactory : ScriptableObject
+    public class GameTileContentFactory : InstanceFactory
     {
         [SerializeField] 
         private GameTileContent _emptyPrefab;
@@ -36,7 +36,7 @@ namespace InGameScene.TD.Boards
         
         private GameTileContent Get(GameTileContent prefab)
         {
-            GameTileContent instance = Instantiate(prefab);
+            GameTileContent instance = GetInstance(prefab);
             instance.OriginFactory = this;
             return instance;
         }
