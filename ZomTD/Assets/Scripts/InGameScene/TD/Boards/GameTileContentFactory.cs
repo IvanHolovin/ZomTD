@@ -13,6 +13,8 @@ namespace InGameScene.TD.Boards
         private GameTileContent _boxPrefab;
         [SerializeField] 
         private GameTileContent _machineGunTurret;
+        [SerializeField] 
+        private GameTileContent _frostGun;
         
         
         public void Reclaim(GameTileContent content)
@@ -30,6 +32,8 @@ namespace InGameScene.TD.Boards
                     return Get(_boxPrefab);
                 case GameTileContentType.MachineGun:
                     return Get(_machineGunTurret);
+                case GameTileContentType.FrostGun:
+                    return Get(_frostGun);
             }
             return null;
         }

@@ -15,3 +15,4 @@ MonoBehaviour:
   _emptyPrefab: {fileID: 8243054506347136332, guid: 5d507e9b25ee64a4a84ed428d78b2130, type: 3}
   _boxPrefab: {fileID: 6554654273250254680, guid: 01b0fbb05cb9a42d3a3afd174fb5bdb3, type: 3}
   _machineGunTurret: {fileID: 7447877979236821512, guid: 81e13555b5cb741a18cb9b4acbb3d7dc, type: 3}
+  _frostGun: {fileID: 200868314538974430, guid: 0fcfd3008ab2d45aa88e5a1009be0f26, type: 3}

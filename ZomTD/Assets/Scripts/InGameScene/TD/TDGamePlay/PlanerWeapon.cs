@@ -17,6 +17,10 @@ namespace InGameScene.TD.TDGamePlay
             {
                 PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Tower);
             }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.FrostGun);
+            }
             if (Input.GetButtonDown("Reload"))
             {
                 PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Remove);

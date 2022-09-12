@@ -15,6 +15,7 @@ namespace InGameScene.TD.Boards.Tiles
         public uint sellCost;
         public uint damage;
         public uint attackRange;
+        public uint slowRate;
         public DamageType _DamageType;
     }
 }

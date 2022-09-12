@@ -30,5 +30,6 @@ public enum GameTileContentType
 {
     Empty,
     Box,
-    MachineGun
+    MachineGun,
+    FrostGun
 }

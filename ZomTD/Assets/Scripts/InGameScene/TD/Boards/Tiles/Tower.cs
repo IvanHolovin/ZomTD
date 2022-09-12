@@ -26,7 +26,6 @@ namespace InGameScene.TD.Boards.Tiles
             if (other.CompareTag("Enemy"))
             {
                 enemyList.Add(other.GetComponent<Enemy>());
-                Debug.Log("enemy added");
             }
         }
         

@@ -66,10 +66,10 @@ namespace InGameScene.TD.Boards
             
         }
 
-        public void PutMachineGun()
+        public void PutTower(GameTileContentType type)
         {
             if(_currentTile != null)
-                _currentTile.PreviewContent = _previewContentFactory.Get(GameTileContentType.MachineGun);
+                _currentTile.PreviewContent = _previewContentFactory.Get(type);
         }
 
         public void Upgrade()

@@ -13,6 +13,7 @@ public enum PlannerAction
     Targeting,
     Box,
     Tower,
+    FrostGun,
     Remove,
     Upgrade
 }
@@ -55,7 +56,10 @@ public enum PlannerAction
                  PutBox();
                  break;
              case PlannerAction.Tower:
-                 PutTower();
+                 PutTower(GameTileContentType.MachineGun);
+                 break;
+             case PlannerAction.FrostGun:
+                 PutTower(GameTileContentType.FrostGun);
                  break;
              case PlannerAction.Remove:
                  Sell();
@@ -90,11 +94,11 @@ public enum PlannerAction
          }
      }
 
-     private void PutTower()
+     private void PutTower(GameTileContentType type)
      {
          if (_selectedTile != null && _selectedTile.Content.Type == GameTileContentType.Box)
          {
-             _builder.PutMachineGun();
+             _builder.PutTower(type);
          }
      }
      
@@ -137,7 +141,7 @@ public enum PlannerAction
 
      private void Sell()
      {
-         if (_selectedTile != null && _selectedTile.CurrentTileType == Tile.TileType.Wall)
+         if (_selectedTile != null && _selectedTile.CurrentTileType != Tile.TileType.Open)
          {
              _builder.Sell();
          }
