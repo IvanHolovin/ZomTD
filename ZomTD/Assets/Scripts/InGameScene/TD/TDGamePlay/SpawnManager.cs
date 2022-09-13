@@ -23,27 +23,57 @@ namespace InGameScene.TD.TDGamePlay
 
         private List<Enemy> _enemyRegister = new List<Enemy>();
         
-        private int _currentWave=0;
+        private int _currentWave;
+        
+        private int _enemiesToSpawn;
+
+        [SerializeField] 
+        private GameObject _destinationPoint;
         
 
-        private void Start()
+        private void Awake()
         {
-            StartCoroutine(SpawnEnemies(_waves[_currentWave]));
+            GameStateDispatcher.Instance.AddListener(state => StartSpawner(state));
+        }
+
+        private void OnDestroy()
+        {
+            GameStateDispatcher.Instance.RemoveListener(state => StartSpawner(state));
         }
 
         void Update()
         {
             
-            
+            if (_enemiesToSpawn == 0 && _enemyRegister.Count == 0 && GameFlowController.Instance.State == GameState.ShooterPhase)
+            {
+                GameFlowController.Instance.GameStateUpdater(GameState.WaveWon);
+                _currentWave++;
+            }
+        }
+
+
+        private void StartSpawner(GameState state)
+        {
+            if (state == GameState.ShooterPhase && _waves.Length > _currentWave)
+            {
+                _enemiesToSpawn = _waves[_currentWave].bossCount + _waves[_currentWave].simpleEnemiesCount;
+                StartCoroutine(SpawnEnemies(_waves[_currentWave]));
+            } 
+            else if (state == GameState.ShooterPhase && _waves.Length == _currentWave)
+            {
+                Debug.Log("EndGame");
+                _enemiesToSpawn = 100;
+                GameFlowController.Instance.GameStateUpdater(GameState.PlanningPhase);
+            }
         }
 
         private void InstatiateEnemy(EnemyType enemyType)
         {
             Enemy enemy = _enemyFactory.Get(enemyType);
-            //enemy.transform.parent = transform;
             enemy.OriginSpawner = this;
             enemy.transform.localPosition = _spawnPoint.transform.localPosition;
-            
+            enemy.transform.SetParent(transform);
+            enemy.SetDestination(_destinationPoint);
             _enemyRegister.Add(enemy);
         }
 
@@ -53,12 +83,14 @@ namespace InGameScene.TD.TDGamePlay
             {
                 yield return new WaitForSeconds(_spawnSpeed);
                 InstatiateEnemy(_waves[_currentWave].simpleEnemies[Random.Range(0,waveToSpawn.simpleEnemies.Length)]);
+                _enemiesToSpawn--;
             }
             
             for(int i=0; i < waveToSpawn.bossCount; i++)
             {
                 yield return new WaitForSeconds(_spawnSpeed * 2);
                 InstatiateEnemy(_waves[_currentWave].bossEnemy);
+                _enemiesToSpawn--;
             }
             yield break;
         }

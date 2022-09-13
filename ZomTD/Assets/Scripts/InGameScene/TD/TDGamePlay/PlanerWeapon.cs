@@ -30,7 +30,10 @@ namespace InGameScene.TD.TDGamePlay
             {
                 PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Upgrade);
             }
-            
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                GameFlowController.Instance.GameStateUpdater(GameState.ShooterPhase);
+            }
         }
         
         

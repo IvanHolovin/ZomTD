@@ -25,7 +25,7 @@ namespace InGameScene.TD.Boards.Tiles
 
         private void Start()
         {
-            Debug.Log(enemyList);
+            
         }
 
         private void Target()

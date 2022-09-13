@@ -1,27 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using InGameScene;
 using InGameScene.Weapons;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
     
-    
-    private IWeapon _currentWeapon;
-
     [SerializeField] 
-    private GameObject _weapon;
-    
+    private GameObject _FPSWeapon;
+    [SerializeField] 
+    private GameObject _planerWeapon;
 
-    void Start()
+    private void Awake()
     {
-        _currentWeapon = _weapon.GetComponent<IWeapon>();
+        GameStateDispatcher.Instance.AddListener(state => WeaponChange(state));
+        WeaponChange(GameState.PlanningPhase);
+    }
+
+    private void OnDestroy()
+    {
+        GameStateDispatcher.Instance.RemoveListener(state => WeaponChange(state));
+    }
+
+    private void WeaponChange(GameState state)
+    {
+        _planerWeapon.gameObject.SetActive(state == GameState.PlanningPhase);
+        _FPSWeapon.gameObject.SetActive(state == GameState.ShooterPhase);
     }
     
-    void Update()
-    {
-        
-        //_currentWeapon.Targeting();
-
-    }
 }

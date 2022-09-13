@@ -1082,11 +1082,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732732e0f2104aca90e082bd5902c3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 500
-  _attackDamage: 10
-  _goldForKill: 50
+  _enemyData: {fileID: 11400000, guid: 3dda93dc373f94ee4b1d29675bf201f2, type: 2}
+  _trigger: {fileID: 7359248914224554271}
   targetPoint: {fileID: 3897073173610025838}
-  _enemyType: 1
 --- !u!54 &6415592966344932919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2364,7 +2362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b57a14c79eaf4cd187e7a64db7b87d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destinationPoint: {fileID: 266230488946082327, guid: 4144b8e6492884b23b16b3ff5521d487, type: 3}
 --- !u!1 &8816356116150677870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,7 +2450,7 @@ PrefabInstance:
       objectReference: {fileID: 266230488946082327, guid: 4144b8e6492884b23b16b3ff5521d487, type: 3}
     - target: {fileID: 4834854240950580625, guid: 17afdf26ce28b4ab89dd0f4950fa19a6, type: 3}
       propertyPath: m_Name
-      value: ZombieDestinationController
+      value: ZombieAggro
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17afdf26ce28b4ab89dd0f4950fa19a6, type: 3}
@@ -2462,3 +2459,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1256156056118488694, guid: 17afdf26ce28b4ab89dd0f4950fa19a6, type: 3}
   m_PrefabInstance: {fileID: 6814301676006794065}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7359248914224554271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4084780945682678350, guid: 17afdf26ce28b4ab89dd0f4950fa19a6, type: 3}
+  m_PrefabInstance: {fileID: 6814301676006794065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b57a14c79eaf4cd187e7a64db7b87d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,6 +7,7 @@ namespace InGameScene.TD.Enemies
     {
         [SerializeField] 
         private Enemy _zombieWalker;
+        
         [SerializeField] 
         private Enemy _hugeZombie;
         
