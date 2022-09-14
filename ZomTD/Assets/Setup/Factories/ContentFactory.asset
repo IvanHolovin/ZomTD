@@ -15,4 +15,5 @@ MonoBehaviour:
   _emptyPrefab: {fileID: 8243054506347136332, guid: 5d507e9b25ee64a4a84ed428d78b2130, type: 3}
   _boxPrefab: {fileID: -1793917663886372747, guid: 6068b48280c624f4881f184cfcefaae0, type: 3}
   _machineGunTurret: {fileID: 7529350991545049426, guid: eac90038dd81a469eacce8c68208d52a, type: 3}
+  _machineGunTurretLvl2: {fileID: 2333782209360747883, guid: 3c81488705d614b94b5862cb51c2fd1b, type: 3}
   _frostGun: {fileID: 200868314538974430, guid: 0fcfd3008ab2d45aa88e5a1009be0f26, type: 3}

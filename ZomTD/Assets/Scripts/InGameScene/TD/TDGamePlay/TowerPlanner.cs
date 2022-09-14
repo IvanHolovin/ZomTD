@@ -84,7 +84,7 @@ public enum PlannerAction
 
      public void PutBox()
      {
-         if (_selectedTile != null && _selectedTile.CurrentTileType == Tile.TileType.Open )
+         if (_selectedTile != null && _selectedTile.Content.blockContent.availableToBuild.Contains(GameTileContentType.Box) )
          {
              _currentPathFinder = _selectedTile.GetComponentInParent<PathFinding>();
              if (_currentPathFinder.PathFind(_selectedTile))
@@ -96,7 +96,7 @@ public enum PlannerAction
 
      private void PutTower(GameTileContentType type)
      {
-         if (_selectedTile != null && _selectedTile.Content.Type == GameTileContentType.Box)
+         if (_selectedTile != null && _selectedTile.Content.blockContent.availableToBuild.Contains(type))
          {
              _builder.PutTower(type);
          }
@@ -113,19 +113,10 @@ public enum PlannerAction
              return null;
      }
 
-
-
-     private Wall GetWall()
+     private void UpdateTowerToNextLevel()
      {
-         if (_manager.Target().GetComponentInParent<Wall>() != null)
-         {
-             Wall wall = _manager.Target().GetComponentInParent<Wall>();
-             return wall;
-         }
-         else
-             return null;
+         
      }
-
 
      private void SelectTile(Tile targetTile)
      {
@@ -141,14 +132,12 @@ public enum PlannerAction
 
      private void Sell()
      {
-         if (_selectedTile != null && _selectedTile.CurrentTileType != Tile.TileType.Open)
+         if (_selectedTile != null && _selectedTile.CurrentTileType == Tile.TileType.Wall )
          {
              _builder.Sell();
          }
      }
-
-
-
+     
      private void PreviewContentUpdateToPermanent()
      {
          if (_selectedTile != null)

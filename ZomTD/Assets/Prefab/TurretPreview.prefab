@@ -204,7 +204,6 @@ GameObject:
   m_Component:
   - component: {fileID: 825358544800704299}
   - component: {fileID: 7447877979236821512}
-  - component: {fileID: 9172959666674333358}
   m_Layer: 0
   m_Name: TurretPreview
   m_TagString: Untagged
@@ -241,18 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameTileContentType: 2
   blockContent: {fileID: 11400000, guid: 6323995bfa0074f43b2b93937c13948f, type: 2}
---- !u!114 &9172959666674333358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696024677708275692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c4342cf831043e4bdf8e27393e9df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3174842573759046853
 GameObject:
   m_ObjectHideFlags: 0

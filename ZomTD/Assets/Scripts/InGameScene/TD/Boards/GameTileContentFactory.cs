@@ -14,6 +14,8 @@ namespace InGameScene.TD.Boards
         [SerializeField] 
         private GameTileContent _machineGunTurret;
         [SerializeField] 
+        private GameTileContent _machineGunTurretLvl2;
+        [SerializeField] 
         private GameTileContent _frostGun;
         
         
@@ -32,6 +34,8 @@ namespace InGameScene.TD.Boards
                     return Get(_boxPrefab);
                 case GameTileContentType.MachineGun:
                     return Get(_machineGunTurret);
+                case GameTileContentType.MachineGunLvl2:
+                    return Get(_machineGunTurretLvl2);
                 case GameTileContentType.FrostGun:
                     return Get(_frostGun);
             }

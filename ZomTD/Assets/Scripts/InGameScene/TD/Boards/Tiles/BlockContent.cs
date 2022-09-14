@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace InGameScene.TD.Boards.Tiles
@@ -16,6 +17,9 @@ namespace InGameScene.TD.Boards.Tiles
         public uint damage;
         public uint attackRange;
         public uint slowRate;
+        public List<GameTileContentType> availableToBuild;
+        public bool upgradable;
+        public GameTileContentType nextUpgrade;
         public DamageType _DamageType;
     }
 }

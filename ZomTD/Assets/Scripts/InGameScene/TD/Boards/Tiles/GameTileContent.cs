@@ -31,5 +31,6 @@ public enum GameTileContentType
     Empty,
     Box,
     MachineGun,
+    MachineGunLvl2,
     FrostGun
 }

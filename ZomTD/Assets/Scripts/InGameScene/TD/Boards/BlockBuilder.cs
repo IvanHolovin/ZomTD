@@ -35,7 +35,6 @@ namespace InGameScene.TD.Boards
                 
         }
         
-        
         public void ToPermanentContent()
         {
             if (_currentTile.Content.Type != _currentTile.PreviewContent.Type)
@@ -68,15 +67,15 @@ namespace InGameScene.TD.Boards
 
         public void PutTower(GameTileContentType type)
         {
-            if(_currentTile != null)
+            if (_currentTile != null && _currentTile.Content.Type == type && _currentTile.Content.blockContent.upgradable)
+            {
+                _currentTile.PreviewContent = _previewContentFactory.Get(_currentTile.Content.blockContent.nextUpgrade);  
+            }
+            else if (_currentTile != null && _currentTile.Content.Type != type)
+            {
                 _currentTile.PreviewContent = _previewContentFactory.Get(type);
+            }
         }
 
-        public void Upgrade()
-        {
-            
-        }
-        
-        
     }
 }

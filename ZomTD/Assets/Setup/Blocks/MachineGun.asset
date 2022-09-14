@@ -16,4 +16,8 @@ MonoBehaviour:
   sellCost: 10
   damage: 10
   attackRange: 4
+  slowRate: 0
+  availableToBuild: 02000000
+  upgradable: 1
+  nextUpgrade: 3
   _DamageType: 1

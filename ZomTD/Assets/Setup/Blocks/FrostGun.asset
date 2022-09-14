@@ -17,4 +17,7 @@ MonoBehaviour:
   damage: 0
   attackRange: 3
   slowRate: 30
+  availableToBuild: 04000000
+  upgradable: 0
+  nextUpgrade: 0
   _DamageType: 2
