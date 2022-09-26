@@ -5,11 +5,8 @@ namespace InGameScene.TD.Enemies
     [CreateAssetMenu]
     public class EnemyFactory : InstanceFactory
     {
-        [SerializeField] 
-        private Enemy _zombieWalker;
-        
-        [SerializeField] 
-        private Enemy _hugeZombie;
+        [SerializeField] private Enemy _zombieWalker;
+        [SerializeField] private Enemy _hugeZombie;
         
         public void Reclaim(Enemy content)
         {

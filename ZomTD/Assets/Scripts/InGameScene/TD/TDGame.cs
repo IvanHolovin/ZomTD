@@ -1,17 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using InGameScene.TD.Enemies;
 using UnityEngine;
 
 public class TDGame : MonoBehaviour
 {
-    [SerializeField] 
-    private Vector2Int _boardSize;
-
-    [SerializeField] 
-    private TilesBoard[] _tilesBoards;
-    
-    
+    [SerializeField] private Vector2Int _boardSize;
+    [SerializeField] private TilesBoard[] _tilesBoards;
     
     void Start()
     {
@@ -19,7 +11,5 @@ public class TDGame : MonoBehaviour
         {
             boards.Initialize(_boardSize);
         }
-        
     }
-    
 }

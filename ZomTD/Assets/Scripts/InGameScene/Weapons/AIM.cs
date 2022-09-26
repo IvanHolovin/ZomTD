@@ -1,18 +1,16 @@
-using System;
 using UnityEngine;
 
 namespace InGameScene.Weapons
 {
     public class AIM : MonoBehaviour
     {
-        [SerializeField] 
-        private GameObject _playerCamera;
+        [SerializeField] private GameObject _playerCamera;
         
-        public GameObject Target()
+        public GameObject Target(int range)
         {
             RaycastHit rayHit;
             if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out rayHit,
-                int.MaxValue, ~12))
+                range, ~12))
             {
                 return rayHit.transform.gameObject;
             }

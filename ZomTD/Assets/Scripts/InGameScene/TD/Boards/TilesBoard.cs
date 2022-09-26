@@ -1,29 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 using InGameScene.TD.Boards;
 using InGameScene.TD.Boards.Tiles;
 using UnityEngine;
 
 public class TilesBoard : MonoBehaviour
-{
-    [SerializeField] 
-    private Transform _tilesBoard;
-
-    [SerializeField] 
-    private Tile _gameTilePrefab;
-
-    [SerializeField] 
-    private float _tileSize = 1.75f;
-
-    [SerializeField] 
-    private GameTileContentFactory _contentFactory;
+{ 
+    [SerializeField] private Transform _tilesBoard;
+    [SerializeField] private Tile _gameTilePrefab;
+    [SerializeField] private float _tileSize = 1.75f;
+    [SerializeField] private GameTileContentFactory _contentFactory;
     
     private Tile[,] _grid;
-    
     private Vector2Int _size;
-
     private Dictionary<Tile, Tile[]> neighborDictionary = new Dictionary<Tile, Tile[]>();
-
     private Tile _startTile;
     private Tile _endTile;
 
@@ -38,11 +27,8 @@ public class TilesBoard : MonoBehaviour
     public void Initialize(Vector2Int size)
     {
         _size = size;
-
         _grid = new Tile[size.x, size.y];
-        
         _tilesBoard.localScale = new Vector3(size.x * _tileSize ,size.y * _tileSize ,1f );
-
         Vector2 offset = new Vector2((size.x - 1f) * 0.5f * _tileSize, (size.y - 1f) * 0.5f * _tileSize);
 
         for (int y = 0; y < size.y; y++)
@@ -61,7 +47,6 @@ public class TilesBoard : MonoBehaviour
                     if (x == size.x / 2)
                     {
                         _startTile = _grid[x, y];
-                        //_grid[x, y].CurrentTileType = Tile.TileType.StartPoint;
                     }
                 } 
                 else if (y == size.y-1)
@@ -95,15 +80,6 @@ public class TilesBoard : MonoBehaviour
 
                 neighborDictionary.Add(_grid[x, y], neighbors.ToArray());
             }
-        }
-    }
-    
-    public void ResetTiles()
-    {
-        foreach(Tile t in _grid)
-        {
-            //t._Color = Color.white;
-            //t._Text = "";
         }
     }
 }

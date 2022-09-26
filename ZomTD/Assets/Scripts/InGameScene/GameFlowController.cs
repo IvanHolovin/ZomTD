@@ -9,8 +9,6 @@ namespace InGameScene
 
         public GameState State { get; private set; }
         
-
-
         private void Awake()
         {
             Instance = this;
@@ -39,10 +37,8 @@ namespace InGameScene
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            
             GameStateDispatcher.Instance.ActionHappened(State);
         }
-        
     }
 
     public enum GameState

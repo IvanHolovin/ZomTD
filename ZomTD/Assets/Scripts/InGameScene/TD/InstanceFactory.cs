@@ -8,7 +8,6 @@ namespace InGameScene.TD
         {
             T instance = Instantiate(prefab);
             return instance;
-            
         }
     }
 }

@@ -1,31 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using InGameScene.GamePlay;
 using UnityEngine;
 
 public class FPSWeaponController : MonoBehaviour
 {
-    [SerializeField] 
-    private Weapon _pistol;
+    [SerializeField] private Weapon _pistol;
+    [SerializeField] private Weapon _shotgun;
 
-    [SerializeField] 
-    private Weapon _shotgun;
+    private Weapon _currentWeapon;
 
+    private void Awake()
+    {
+        SetPistol();
+    }
 
     private void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            _pistol.gameObject.SetActive(true);
-            _shotgun.gameObject.SetActive(false);
+            SetPistol();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            _pistol.gameObject.SetActive(false);
-            _shotgun.gameObject.SetActive(true);
+            SetShotgun();
         }
+
+        if (Input.GetButton("Fire1"))
+        {
+            _currentWeapon.Fire();
+        }
+    }
+
+    private void SetPistol()
+    {
+        _pistol.gameObject.SetActive(true);
+        _shotgun.gameObject.SetActive(false);
+        _currentWeapon = _pistol;
+    }
+
+    private void SetShotgun()
+    {
+        _pistol.gameObject.SetActive(false);
+        _shotgun.gameObject.SetActive(true);
+        _currentWeapon = _shotgun;
     }
 
 }

@@ -9,9 +9,8 @@ namespace InGameScene.TD.TDGamePlay
         {
             if (other.CompareTag("Enemy"))
             {
-                EndPointHealthDispatcher.Instance.ActionHappened(-other.GetComponent<Enemy>().EndPointReach());
+                EndPointHealthDispatcher.Instance.ActionHappened(-other.GetComponent<Enemy>().EndPointReachDamage());
             }
         }
-
     }
 }

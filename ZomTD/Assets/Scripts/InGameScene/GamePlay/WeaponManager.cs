@@ -1,18 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using InGameScene;
-using InGameScene.Weapons;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _FPSWeapon;
+    [SerializeField] private GameObject _planerWeapon;
     
-    [SerializeField] 
-    private GameObject _FPSWeapon;
-    [SerializeField] 
-    private GameObject _planerWeapon;
-
     private void Awake()
     {
         GameStateDispatcher.Instance.AddListener(state => WeaponChange(state));

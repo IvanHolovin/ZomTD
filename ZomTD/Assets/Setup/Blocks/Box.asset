@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b61c486823641e4af1ee74a468452e6, type: 3}
   m_Name: Box
   m_EditorClassIdentifier: 
-  cost: 10
-  sellCost: 5
-  damage: 0
-  attackRange: 0
-  slowRate: 0
-  availableToBuild: 0200000004000000
-  upgradable: 0
-  nextUpgrade: 0
-  _DamageType: 0
+  _cost: 10
+  _sellCost: 5
+  _damage: 0
+  _attackRange: 0
+  _slowRate: 0
+  _availableToBuild: 0200000004000000
+  _isUpgradable: 0
+  _nextUpgrade: 0
+  _damageType: 0

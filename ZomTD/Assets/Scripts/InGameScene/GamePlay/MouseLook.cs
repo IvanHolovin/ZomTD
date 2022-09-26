@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField]
-    private float _sensitivity;
+    [SerializeField] private float _sensitivity;
     
     private Transform _playerTransform;
     private float _xRotation = 0f;
@@ -13,7 +12,6 @@ public class MouseLook : MonoBehaviour
         _playerTransform = transform.root.GetComponent<Transform>();
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     
     void Update()
     {

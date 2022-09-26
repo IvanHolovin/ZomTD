@@ -1,22 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ZombieAggroTrigger : MonoBehaviour
 {
-    private bool _following;
-    public bool Following => _following;
-
+    private bool _isFollowing;
     private GameObject _target;
+    
+    public bool IsFollowing => _isFollowing;
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             _target = other.gameObject;
-            _following = true;
+            _isFollowing = true;
         }
     }
     
@@ -24,7 +20,7 @@ public class ZombieAggroTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _following = false;
+            _isFollowing = false;
         }
     }
     

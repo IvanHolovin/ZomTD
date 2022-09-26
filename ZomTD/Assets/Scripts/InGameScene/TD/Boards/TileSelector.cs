@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using InGameScene.TD.Boards.Tiles;
 using UnityEngine;
@@ -18,7 +17,6 @@ namespace InGameScene.TD.Boards
             SelectedTileDispatcher.Instance.RemoveListener(SelectTile);
         }
 
-
         public void RegisterTile(Tile tile)
         {
             if (_tilesBench == null)
@@ -27,11 +25,11 @@ namespace InGameScene.TD.Boards
             }
             _tilesBench.Add(tile);
         }
+        
         public void UnRegisterTile(Tile tile)
         {
             _tilesBench.Remove(tile);
         }
-        
         
         private void SelectTile(Tile selectedTile)
         {
@@ -62,6 +60,5 @@ namespace InGameScene.TD.Boards
                 }
             }
         }
-        
     }
 }

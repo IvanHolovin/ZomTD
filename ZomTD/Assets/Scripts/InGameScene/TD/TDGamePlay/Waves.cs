@@ -1,18 +1,20 @@
 using InGameScene.TD.Enemies;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace InGameScene.TD.TDGamePlay
 {   
-    [CreateAssetMenu(fileName = "New Enemy Wave", menuName = "Wave")]
+    [CreateAssetMenu(fileName = "New Enemy Wave", menuName = "WaveData")]
     public class Waves : ScriptableObject
     {
-
-        public EnemyType[] simpleEnemies;
-        public int simpleEnemiesCount;
-        public EnemyType bossEnemy;
-        public int bossCount;
+        [SerializeField] private EnemyType[] _simpleEnemies;
+        [SerializeField] private int _simpleEnemiesCount;
+        [SerializeField] private EnemyType _bossEnemy;
+        [SerializeField] private int _bossCount;
+        
+        public EnemyType[] SimpleEnemies => _simpleEnemies;
+        public int SimpleEnemiesCount => _simpleEnemiesCount;
+        public EnemyType BossEnemy => _bossEnemy;
+        public int BossCount => _bossCount;
     }
     
 }

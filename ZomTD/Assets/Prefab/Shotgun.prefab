@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8350058239530292212}
   - component: {fileID: 5926907272288641527}
   - component: {fileID: 4872917812114526470}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR15-LowPoly.021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2946490125434542769, guid: 44d377b088ddd4d89b37384d43be7518, type: 3}
+  - {fileID: 2100000, guid: 34e51bbdc741748fc9172835af5fd618, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5315494304961164009}
   - component: {fileID: 6774167968570542423}
   - component: {fileID: 4058677250565111078}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR15-LowPoly.019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2946490125434542769, guid: 44d377b088ddd4d89b37384d43be7518, type: 3}
+  - {fileID: 2100000, guid: 34e51bbdc741748fc9172835af5fd618, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4512883876867510886}
   - component: {fileID: 4110871928300318393}
   - component: {fileID: 1764159041426869425}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR15-LowPoly.022
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2946490125434542769, guid: 44d377b088ddd4d89b37384d43be7518, type: 3}
+  - {fileID: 2100000, guid: 34e51bbdc741748fc9172835af5fd618, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 8668818565718722537}
   - component: {fileID: 5879090627745160138}
   - component: {fileID: 6076191350451433860}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR15-LowPoly.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2946490125434542769, guid: 44d377b088ddd4d89b37384d43be7518, type: 3}
+  - {fileID: 2100000, guid: 34e51bbdc741748fc9172835af5fd618, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6652836263340818135}
   - component: {fileID: 6368450396432963478}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,6 +359,7 @@ Transform:
   - {fileID: 4512883876867510886}
   - {fileID: 7453600687569478205}
   - {fileID: 6775783585269047523}
+  - {fileID: 1618335176254844997}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -374,6 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac20eac2100468fa7ef6f1ab2ff8add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shotSplash: {fileID: 0}
+  _weaponData: {fileID: 0}
 --- !u!1 &7593961070160208010
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +388,7 @@ GameObject:
   - component: {fileID: 7453600687569478205}
   - component: {fileID: 2642034070157291837}
   - component: {fileID: 2953600405586413719}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR15-LowPoly.023
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2946490125434542769, guid: 44d377b088ddd4d89b37384d43be7518, type: 3}
+  - {fileID: 2100000, guid: 34e51bbdc741748fc9172835af5fd618, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -466,7 +469,7 @@ GameObject:
   - component: {fileID: 7147313736826629705}
   - component: {fileID: 102420450613334212}
   - component: {fileID: 6276086726000485480}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR15-LowPoly.018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +517,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2946490125434542769, guid: 44d377b088ddd4d89b37384d43be7518, type: 3}
+  - {fileID: 2100000, guid: 34e51bbdc741748fc9172835af5fd618, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -547,7 +550,7 @@ GameObject:
   - component: {fileID: 6775783585269047523}
   - component: {fileID: 2404407088108232729}
   - component: {fileID: 7930546191814074755}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR15-LowPoly.024
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,3 +620,65 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &7678691821692516980
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6652836263340818135}
+    m_Modifications:
+    - target: {fileID: 4218687197382238905, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_Name
+      value: GunShots
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0011
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2307
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+--- !u!4 &1618335176254844997 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8999681636037397041, guid: 8a0e2c148bf4d45349b20d9b5d5d97e9, type: 3}
+  m_PrefabInstance: {fileID: 7678691821692516980}
+  m_PrefabAsset: {fileID: 0}

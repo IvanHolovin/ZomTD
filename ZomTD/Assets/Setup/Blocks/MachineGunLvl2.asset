@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b61c486823641e4af1ee74a468452e6, type: 3}
   m_Name: MachineGunLvl2
   m_EditorClassIdentifier: 
-  cost: 10
-  sellCost: 15
-  damage: 20
-  attackRange: 4
-  slowRate: 0
-  availableToBuild: 
-  upgradable: 0
-  nextUpgrade: 0
-  _DamageType: 1
+  _cost: 20
+  _sellCost: 20
+  _damage: 6
+  _attackRange: 3
+  _slowRate: 0
+  _availableToBuild: 
+  _isUpgradable: 0
+  _nextUpgrade: 0
+  _damageType: 0

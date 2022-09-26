@@ -1,4 +1,3 @@
-using System;
 using InGameScene.TD.TDGamePlay;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,29 +11,23 @@ namespace InGameScene.TD.Enemies
     }
     public abstract class Enemy : MonoBehaviour
     {
-        [SerializeField] 
-        private EnemyScriptableObj _enemyData;
-
-        [SerializeField] 
-        private ZombieAggroTrigger _trigger;
+        [SerializeField] private EnemyScriptableObj _enemyData;
+        [SerializeField] private ZombieAggroTrigger _aggroTrigger;
+        
+        private float _moveSpeed;
+        private bool _isSlowed;
+        private float _health;
+        private bool _isDestinationReseted = true;
+        private NavMeshAgent _navMeshAgent;
+        private GameObject _destinationPoint;
         
         public Transform targetPoint;
         
         public EnemyFactory OriginFactory { get; set; }
         
         public SpawnManager OriginSpawner { get; set; }
-
-        private NavMeshAgent _navMeshAgent;
-
-        private GameObject _destinationPoint;
         
-        private float _moveSpeed;
-        
-        private bool _slowed;
-        
-        private float _health;
-
-        private bool _resetedDestination = true;
+        public EnemyType EnemyType => _enemyData.EnemyType;
 
         private void Awake()
         {
@@ -45,24 +38,18 @@ namespace InGameScene.TD.Enemies
 
         private void Update()
         {
-            if (_trigger.Following)
+            if (_aggroTrigger.IsFollowing)
             {
-                _navMeshAgent.destination = _trigger.FollowPlayer().transform.position;
-                _resetedDestination = false;
+                _navMeshAgent.destination = _aggroTrigger.FollowPlayer().transform.position;
+                _isDestinationReseted = false;
             }
-            else if (!_trigger.Following && !_resetedDestination)
+            else if (!_aggroTrigger.IsFollowing && !_isDestinationReseted)
             {
-                Debug.Log("nav mesh update");
                 _navMeshAgent.destination = _destinationPoint.transform.position;
-                _resetedDestination = true;
+                _isDestinationReseted = true;
             }
         }
-
-        public EnemyType EnemyType
-        {
-            get => _enemyData.EnemyType;
-        }
-
+        
         public void TakeDamage(float damage)
         {
             if (_health - damage > 0)
@@ -79,10 +66,10 @@ namespace InGameScene.TD.Enemies
         {
             if (_enemyData.CanSlowDown)
             {
-                if (!_slowed)
+                if (!_isSlowed)
                 {
                     _navMeshAgent.speed -= _navMeshAgent.speed * slowRate / 100;
-                    _slowed = true;
+                    _isSlowed = true;
                 }
                 else
                 {
@@ -103,10 +90,10 @@ namespace InGameScene.TD.Enemies
         public void RemoveSlow()
         {
             _navMeshAgent.speed = _moveSpeed;
-            _slowed = false;
+            _isSlowed = false;
         }
 
-        public float EndPointReach()
+        public float EndPointReachDamage()
         {
             OriginSpawner.UnRegisterEnemy(this);
             OriginFactory.Reclaim(this);

@@ -1,19 +1,11 @@
-using System;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField, Min(0f)] 
-    private float _speed;
-    
-    [SerializeField, Min(0f)] 
-    private float _jumpForce;
-    
-    [SerializeField] 
-    private Transform _groundCheck;
-
-    [SerializeField] 
-    private LayerMask _groundLayerMask;
+    [SerializeField, Min(0f)] private float _speed;
+    [SerializeField, Min(0f)] private float _jumpForce;
+    [SerializeField] private Transform _groundCheck;
+    [SerializeField] private LayerMask _groundLayerMask;
     
     private CharacterController _playerController;
     private Vector3 _velocity;
@@ -51,5 +43,6 @@ public class PlayerMove : MonoBehaviour
         Vector3 move = transform.right * xDirection + transform.forward * zDirection;
         _playerController.Move(move * _speed * Time.deltaTime);
         _playerController.Move(_velocity * Time.deltaTime);
+        
     }
 }

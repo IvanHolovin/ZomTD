@@ -1,53 +1,41 @@
-using System;
 using InGameScene.TD.Enemies;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace InGameScene.TD.Boards.Tiles
 {
     public class MachineGun : Tower
     {
-        [SerializeField]
-        private Transform _rotateHead;
+        [SerializeField] private Transform _rotateHead;
+        [SerializeField] private ParticleSystem _shotParticle;
         
         private Enemy _currentTarget;
-        
-        private float attackRateTime = 1f;
-        
-        private float timer;
-        
+        private float _attackRateTime = 0.5f;
+        private float _timer;
         
         private void Update()
         {
            Target();
-           timer += Time.deltaTime;
-        }
-
-        private void Start()
-        {
-            
+           _timer += Time.deltaTime;
         }
 
         private void Target()
         {
-            if(enemyList.Count > 0)
+            if(_enemyList.Count > 0)
             {
-                if (enemyList[0] == null)
+                if (_enemyList[0] == null)
                 {
-                    enemyList.Remove(enemyList[0]);
+                    _enemyList.Remove(_enemyList[0]);
                     return;
                 }
-                _currentTarget = enemyList[0];
-
+                _currentTarget = _enemyList[0];
                 Vector3 dir = _currentTarget.targetPoint.position - _rotateHead.transform.position;
                 Quaternion lookRotation = Quaternion.LookRotation(dir);
                 _rotateHead.rotation = lookRotation;
-                if (timer >= attackRateTime)
+                if (_timer >= _attackRateTime)
                 {
-                    timer = 0;
+                    _timer = 0;
                     Shot();
                 }
-                
             }
             else
             {
@@ -55,9 +43,11 @@ namespace InGameScene.TD.Boards.Tiles
             }
         }
 
-        private void Shot()
+        protected virtual void Shot()
         {
-            _currentTarget.TakeDamage((float)_towerType.damage); 
+            _currentTarget.TakeDamage((float)_towerType.Damage); 
+            _shotParticle.Play();
+            _audioSource.PlayOneShot(_shotAudioClip);
         }
     }
 }

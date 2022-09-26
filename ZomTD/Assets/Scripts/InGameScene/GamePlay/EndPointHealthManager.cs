@@ -1,5 +1,3 @@
-using System;
-using InGameScene.TD.Enemies;
 using InGameScene.TD.TDGamePlay;
 using UnityEngine;
 
@@ -7,9 +5,8 @@ namespace InGameScene.GamePlay
 {
     public class EndPointHealthManager : MonoBehaviour
     {
-        [SerializeField]
-        private float _health;
-
+        [SerializeField] private float _health;
+        
         public float Health => _health;
         
         private void Awake()
@@ -30,11 +27,8 @@ namespace InGameScene.GamePlay
             }
             else
             {
-                Debug.Log("Game Over");
                 GameFlowController.Instance.GameStateUpdater(GameState.GameLost);
             }
-            
         }
-        
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using InGameScene.TD.Enemies;
@@ -9,28 +8,16 @@ namespace InGameScene.TD.TDGamePlay
 {
     public class SpawnManager : MonoBehaviour
     {
-        [SerializeField] 
-        private EnemyFactory _enemyFactory = default;
-
-        [SerializeField] 
-        private Waves[] _waves;
-
-        [SerializeField, Range(0.1f, 10f)] 
-        private float _spawnSpeed = 1f;
-
-        [SerializeField] 
-        private Transform _spawnPoint;
-
+        [SerializeField] private EnemyFactory _enemyFactory = default;
+        [SerializeField] private Waves[] _waves;
+        [SerializeField, Range(0.1f, 10f)] private float _spawnSpeed = 1f;
+        [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private GameObject _destinationPoint;
+        
         private List<Enemy> _enemyRegister = new List<Enemy>();
-        
         private int _currentWave;
-        
         private int _enemiesToSpawn;
-
-        [SerializeField] 
-        private GameObject _destinationPoint;
         
-
         private void Awake()
         {
             GameStateDispatcher.Instance.AddListener(state => StartSpawner(state));
@@ -43,7 +30,6 @@ namespace InGameScene.TD.TDGamePlay
 
         void Update()
         {
-            
             if (_enemiesToSpawn == 0 && _enemyRegister.Count == 0 && GameFlowController.Instance.State == GameState.ShooterPhase)
             {
                 GameFlowController.Instance.GameStateUpdater(GameState.WaveWon);
@@ -56,7 +42,7 @@ namespace InGameScene.TD.TDGamePlay
         {
             if (state == GameState.ShooterPhase && _waves.Length > _currentWave)
             {
-                _enemiesToSpawn = _waves[_currentWave].bossCount + _waves[_currentWave].simpleEnemiesCount;
+                _enemiesToSpawn = _waves[_currentWave].BossCount + _waves[_currentWave].SimpleEnemiesCount;
                 StartCoroutine(SpawnEnemies(_waves[_currentWave]));
             } 
             else if (state == GameState.ShooterPhase && _waves.Length == _currentWave)
@@ -79,17 +65,16 @@ namespace InGameScene.TD.TDGamePlay
 
         private IEnumerator SpawnEnemies(Waves waveToSpawn)
         {
-            for(int i=0; i < waveToSpawn.simpleEnemiesCount; i++)
+            for(int i=0; i < waveToSpawn.SimpleEnemiesCount; i++)
             {
                 yield return new WaitForSeconds(_spawnSpeed);
-                InstatiateEnemy(_waves[_currentWave].simpleEnemies[Random.Range(0,waveToSpawn.simpleEnemies.Length)]);
+                InstatiateEnemy(_waves[_currentWave].SimpleEnemies[Random.Range(0,waveToSpawn.SimpleEnemies.Length)]);
                 _enemiesToSpawn--;
             }
-            
-            for(int i=0; i < waveToSpawn.bossCount; i++)
+            for(int i=0; i < waveToSpawn.BossCount; i++)
             {
                 yield return new WaitForSeconds(_spawnSpeed * 2);
-                InstatiateEnemy(_waves[_currentWave].bossEnemy);
+                InstatiateEnemy(_waves[_currentWave].BossEnemy);
                 _enemiesToSpawn--;
             }
             yield break;
@@ -99,6 +84,5 @@ namespace InGameScene.TD.TDGamePlay
         {
             _enemyRegister.Remove(enemy);
         }
-        
     }
 }

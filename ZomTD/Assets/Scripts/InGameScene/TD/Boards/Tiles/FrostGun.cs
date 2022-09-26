@@ -1,4 +1,3 @@
-using System;
 using InGameScene.TD.Enemies;
 using UnityEngine;
 
@@ -10,7 +9,8 @@ namespace InGameScene.TD.Boards.Tiles
         {
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<Enemy>().TakeSlow(_towerType.slowRate);
+                other.GetComponent<Enemy>().TakeSlow(_towerType.SlowRate);
+                _audioSource.PlayOneShot(_shotAudioClip);
             }
         }
 

@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 3dda93dc373f94ee4b1d29675bf201f2, type: 2}
-  _trigger: {fileID: 7359248914224554271}
+  _aggroTrigger: {fileID: 7359248914224554271}
   targetPoint: {fileID: 3897073173610025838}
 --- !u!54 &6415592966344932919
 Rigidbody:

@@ -1,6 +1,4 @@
 using System;
-using InGameScene.TD.Boards.Tiles;
-using InGameScene;
 
 namespace DispatcherSingleton
 {

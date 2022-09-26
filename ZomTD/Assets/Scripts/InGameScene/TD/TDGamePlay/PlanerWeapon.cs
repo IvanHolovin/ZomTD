@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace InGameScene.TD.TDGamePlay
@@ -25,7 +24,6 @@ namespace InGameScene.TD.TDGamePlay
             {
                 PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Remove);
             }
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PlannerActionDispatcher.Instance.ActionHappened(PlannerAction.Upgrade);
@@ -35,8 +33,5 @@ namespace InGameScene.TD.TDGamePlay
                 GameFlowController.Instance.GameStateUpdater(GameState.ShooterPhase);
             }
         }
-        
-        
-        
     }
 }

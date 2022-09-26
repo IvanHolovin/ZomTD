@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b61c486823641e4af1ee74a468452e6, type: 3}
   m_Name: FrostGun
   m_EditorClassIdentifier: 
-  cost: 15
-  sellCost: 10
-  damage: 0
-  attackRange: 3
-  slowRate: 30
-  availableToBuild: 04000000
-  upgradable: 0
-  nextUpgrade: 0
-  _DamageType: 2
+  _cost: 15
+  _sellCost: 10
+  _damage: 0
+  _attackRange: 3
+  _slowRate: 30
+  _availableToBuild: 
+  _isUpgradable: 0
+  _nextUpgrade: 0
+  _damageType: 2

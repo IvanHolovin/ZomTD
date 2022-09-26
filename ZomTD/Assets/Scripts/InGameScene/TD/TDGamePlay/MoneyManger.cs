@@ -1,12 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace InGameScene.TD.TDGamePlay
 {
     public class MoneyManger : MonoBehaviour
     {
-        [SerializeField]
-        private int _moneyBalance;
+        [SerializeField] private int _moneyBalance;
 
         public int MoneyBalance => _moneyBalance;
 
@@ -36,8 +34,6 @@ namespace InGameScene.TD.TDGamePlay
             {
                 return false;
             }
-            
         }
-        
     }
 }

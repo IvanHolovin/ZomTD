@@ -1,12 +1,9 @@
 using System;
-using System.Diagnostics;
 using InGameScene.TD.Boards;
 using InGameScene.TD.TDGamePlay;
 using UnityEngine;
 using InGameScene.TD.Boards.Tiles;
-using UnityEngine.AI;
 using InGameScene.Weapons;
-using Debug = UnityEngine.Debug;
 
 public enum PlannerAction
 {
@@ -20,13 +17,10 @@ public enum PlannerAction
 
  public class TowerPlanner : MonoBehaviour
  {
-     [SerializeField] 
-     private BlockBuilder _builder;
+     [SerializeField] private BlockBuilder _builder;
      
      private AIM _manager;
-
      private PathFinding _currentPathFinder;
-
      private Tile _selectedTile;
 
      private void Awake()
@@ -42,7 +36,6 @@ public enum PlannerAction
      private void Start()
      {
          _manager = GetComponentInParent<AIM>();
-        
      }
         
      private void PlannerActionCheck(PlannerAction actionType)
@@ -84,7 +77,7 @@ public enum PlannerAction
 
      public void PutBox()
      {
-         if (_selectedTile != null && _selectedTile.Content.blockContent.availableToBuild.Contains(GameTileContentType.Box) )
+         if (_selectedTile != null && _selectedTile.Content.blockContent.AvailableToBuild.Contains(GameTileContentType.Box) )
          {
              _currentPathFinder = _selectedTile.GetComponentInParent<PathFinding>();
              if (_currentPathFinder.PathFind(_selectedTile))
@@ -96,7 +89,7 @@ public enum PlannerAction
 
      private void PutTower(GameTileContentType type)
      {
-         if (_selectedTile != null && _selectedTile.Content.blockContent.availableToBuild.Contains(type))
+         if (_selectedTile != null && _selectedTile.Content.blockContent.AvailableToBuild.Contains(type))
          {
              _builder.PutTower(type);
          }
@@ -104,20 +97,15 @@ public enum PlannerAction
      
      private Tile GetTile()
      {
-         if (_manager.Target() != null && _manager.Target().transform.GetComponentInParent<Tile>() != null)
+         if (_manager.Target(int.MaxValue) != null && _manager.Target(int.MaxValue).transform.GetComponentInParent<Tile>() != null)
          {
-             Tile tile = _manager.Target().transform.GetComponentInParent<Tile>();
+             Tile tile = _manager.Target(int.MaxValue).transform.GetComponentInParent<Tile>();
              return tile;
          }
          else
              return null;
      }
-
-     private void UpdateTowerToNextLevel()
-     {
-         
-     }
-
+     
      private void SelectTile(Tile targetTile)
      {
          if (targetTile != null)
@@ -143,7 +131,7 @@ public enum PlannerAction
          if (_selectedTile != null)
          {
              _builder.ToPermanentContent();
-        }
+         }
     }
      
  }
