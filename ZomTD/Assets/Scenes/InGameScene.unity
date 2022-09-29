@@ -1498,6 +1498,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 12.18
       objectReference: {fileID: 0}
+    - target: {fileID: 4204763811552538570, guid: cf8ec377bf91b4c93a39022f18cbc63b, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204763811552538570, guid: cf8ec377bf91b4c93a39022f18cbc63b, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204763811552538570, guid: cf8ec377bf91b4c93a39022f18cbc63b, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204763811552538570, guid: cf8ec377bf91b4c93a39022f18cbc63b, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6857881614439605265, guid: cf8ec377bf91b4c93a39022f18cbc63b, type: 3}
       propertyPath: m_RootOrder
       value: 2
